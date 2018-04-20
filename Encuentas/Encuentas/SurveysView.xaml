@@ -7,6 +7,16 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:Data x:Key="data"/>
+            <DataTemplate x:Key="EncuestasDataTemplate">
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Nombbre}"
+                               FontSize="24"/>
+                        <Label Text="{Binding FechaNacimiento,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                        <Label Text="{Binding FavoriteTeam}"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -25,7 +35,9 @@
             </Button>
             <ListView ItemsSource="{Binding Encuestas}"
                       SelectedItem="{Binding EncSeleccionada,Mode=TwoWay}"
-                      Grid.Row="1">
+                      ItemTemplate="{StaticResource EncuestasDataTemplate }"
+                      Grid.Row="1"
+                      HasUnevenRows="True">
                 
             </ListView>
         </Grid>
