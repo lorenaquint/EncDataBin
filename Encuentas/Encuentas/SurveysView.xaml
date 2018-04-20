@@ -7,13 +7,15 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:Data x:Key="data"/>
+            <local:EquipoFavoritoConverter x:Key="equipoConv"/>
             <DataTemplate x:Key="EncuestasDataTemplate">
                 <ViewCell>
                     <StackLayout>
-                        <Label Text="{Binding Nombbre}"
+                        <Label Text="{Binding Nombre}"
                                FontSize="24"/>
                         <Label Text="{Binding FechaNacimiento,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                        <Label Text="{Binding FavoriteTeam}"/>
+                        <Label Text="{Binding FavoriteTeam}"
+                               TextColor="{Binding FavoriteTeam,Converter={StaticResource equipoConv }}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
@@ -37,7 +39,7 @@
                       SelectedItem="{Binding EncSeleccionada,Mode=TwoWay}"
                       ItemTemplate="{StaticResource EncuestasDataTemplate }"
                       Grid.Row="1"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"     >
                 
             </ListView>
         </Grid>
